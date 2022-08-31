@@ -51,7 +51,8 @@ func readCsvFile(filePath string) []string {
 
 	var tokens []string
 	for _, v := range records {
-		if len(v[18]) > 0 {
+		// if len(v[18]) > 0 {
+		if len(v[18]) > 0 && (v[0] == "cleartoo_official" || v[0] == "guillaume27089") {
 			tokens = append(tokens, v[18])
 		}
 	}
