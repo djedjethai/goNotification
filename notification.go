@@ -92,7 +92,7 @@ func sendNotif(token, title, body string) {
 	client := expo.NewPushClient(nil)
 
 	// Publish message
-	response, err := client.Publish(
+	response, _ := client.Publish(
 		&expo.PushMessage{
 			To:       []expo.ExponentPushToken{pushToken},
 			Body:     body,
@@ -102,11 +102,6 @@ func sendNotif(token, title, body string) {
 			Priority: expo.DefaultPriority,
 		},
 	)
-
-	// Check errors
-	if err != nil {
-		panic(err)
-	}
 
 	// Validate responses
 	if response.ValidateResponse() != nil {
