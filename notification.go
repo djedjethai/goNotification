@@ -30,6 +30,7 @@ func main() {
 
 	// send the notification
 	for _, v := range tokens {
+		// fmt.Println("the token: ", len(v))
 		sendNotif(v, arg2, arg3)
 	}
 
@@ -51,8 +52,8 @@ func readCsvFile(filePath string) []string {
 
 	var tokens []string
 	for _, v := range records {
-		// if len(v[18]) > 0 {
-		if len(v[18]) > 0 && (v[0] == "cleartoo_official" || v[0] == "guillaume27089") {
+		if len(v[18]) > 0 && len(v[18]) == 41 {
+			// if len(v[18]) > 0 && (v[0] == "cleartoo_official" || v[0] == "guillaume27089") {
 			tokens = append(tokens, v[18])
 		}
 	}
@@ -103,6 +104,10 @@ func sendNotif(token, title, body string) {
 			Priority: expo.DefaultPriority,
 		},
 	)
+
+	if err != nil {
+		color.Red("Error pushing message: ", err)
+	}
 
 	// Validate responses
 	if response.ValidateResponse() != nil {
