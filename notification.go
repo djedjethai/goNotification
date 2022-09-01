@@ -52,6 +52,7 @@ func main() {
 
 			for val := range d {
 				mu.Lock()
+				fmt.Println(val, " failed")
 				_, _ = fmt.Fprintf(f, "%s\n", val)
 				mu.Unlock()
 			}
